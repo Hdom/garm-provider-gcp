@@ -213,6 +213,8 @@ func (r RunnerSpec) ComposeUserData() (string, error) {
 				"sudo usermod -aG sudo " + defaults.DefaultUser,
 				// Check curl and tar are installed
 				"sudo apt-get update && sudo apt-get install -y curl tar",
+				// Add RUNNER_ALLOW_RUNASROOT to allow config.sh to run in the google_metadata_script_runner
+				"export RUNNER_ALLOW_RUNASROOT=\"1\"",
 			}
 			lines = append(lines[:1], append(additionalCommands, lines[1:]...)...)
 		}
